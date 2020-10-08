@@ -80,14 +80,14 @@ namespace Exiled.API.Features
                     const string PocketPath = "HeavyRooms/PocketWorld";
                     var pocket = GameObject.Find(PocketPath);
                     if (pocket == null)
-                        throw new NullReferenceException("Pocket Dimension not found. The name or location in the game's hierarchy might have changed.");
+                        Log.Warn("Pocket Dimension not found. The name or location in the game's hierarchy might have changed.");
                     roomObjects.Add(pocket);
 
                     // Add the surface since it is not tagged Room. Add it last so we can use it as a default room since it never changes.
                     const string surfaceRoomName = "Outside";
                     var surface = GameObject.Find(surfaceRoomName);
                     if (surface == null)
-                        throw new NullReferenceException("Surface not found. The name in the game's hierarchy might have changed.");
+                        Log.Warn("Surface not found. The name in the game's hierarchy might have changed.");
                     roomObjects.Add(surface);
 
                     foreach (var roomObject in roomObjects)
