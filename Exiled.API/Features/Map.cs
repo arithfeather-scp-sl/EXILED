@@ -36,7 +36,7 @@ namespace Exiled.API.Features
         private static readonly ReadOnlyCollection<Lift> ReadOnlyLiftsValue = LiftsValue.AsReadOnly();
         private static readonly ReadOnlyCollection<TeslaGate> ReadOnlyTeslasValue = TeslasValue.AsReadOnly();
 
-        private static readonly RaycastHit[] CachedFindParentRoomRaycast = new RaycastHit[1];
+        private static readonly RaycastHit[] cachedFindParentRoomRaycast = new RaycastHit[1];
 
         private static SpawnpointManager spawnpointManager;
 
@@ -165,9 +165,9 @@ namespace Exiled.API.Features
                 // Then try for objects that aren't children, like players and pickups.
                 Ray ray = new Ray(objectInRoom.transform.position, Vector3.down);
 
-                if (Physics.RaycastNonAlloc(ray, CachedFindParentRoomRaycast, 10, 1 << 0, QueryTriggerInteraction.Ignore) == 1)
+                if (Physics.RaycastNonAlloc(ray, cachedFindParentRoomRaycast, 10, 1 << 0, QueryTriggerInteraction.Ignore) == 1)
                 {
-                    room = CachedFindParentRoomRaycast[0].collider.gameObject.GetComponentInParent<Room>();
+                    room = cachedFindParentRoomRaycast[0].collider.gameObject.GetComponentInParent<Room>();
                 }
             }
 
